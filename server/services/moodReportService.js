@@ -10,10 +10,10 @@ const moodReportService = {
             const predictionsResponse = await axios.post(process.env.AI_MODULE_URL, reports);
             const predictions = predictionsResponse.data;
 
-            return { reports, predictions };
+            return {reports, predictions};
         } catch (error) {
             console.error('Error in getAllReports:', error);
-            throw error; // Rethrow the error so it can be handled by the caller
+            throw error;
         }
     },
 
@@ -47,9 +47,7 @@ const moodReportService = {
             additionalInfo,
         }
 
-        const report = await moodReportRepository.createReport(ownerId, reportData)
-
-        return report
+        return await moodReportRepository.createReport(ownerId, reportData)
     }
 
 
